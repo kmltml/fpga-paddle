@@ -137,11 +137,12 @@ module vga
 
    logic paddle_update;
    logic paddle_pixel;
-   paddle pad(left, right, paddle_update, clck, x, y, paddle_pixel);
+   logic [9:0] paddleX;
+   paddle pad(left, right, paddle_update, clck, x, y, paddle_pixel, paddleX);
 
    logic ball_update;
    logic ball_pixel;
-   ball ball_(clck, reset, x, y, ball_update, ball_pixel);
+   ball ball_(clck, reset, x, y, ball_update, paddleX, ball_pixel);
    
    logic [2:0] paddleColour;
 

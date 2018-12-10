@@ -4,6 +4,7 @@ module ball
    input logic [9:0] vgax,
    input logic [8:0] vgay,
    input logic       update,
+   input logic [9:0] paddleX,
    output logic      pixel);
 
    const int    SCREEN_WIDTH  = 640;
@@ -32,7 +33,9 @@ module ball
             end
             if(yv < 4 && y < 8 - yv) begin
                yv = 8 - yv;
-            end else if(yv > 4 && y >= SCREEN_HEIGHT - BALL_SIZE - (yv - 4)) begin
+            end else if(yv > 4 && 
+                        (y >= SCREEN_HEIGHT - BALL_SIZE - (yv - 4) || 
+                         (y >= 440 - BALL_SIZE - (yv - 4) && x + BALL_SIZE >= paddleX && x <= paddleX + 50))) begin
                yv = 8 - yv;
             end
          end
