@@ -56,6 +56,7 @@ set_location_assignment PIN_240 -to hsync
 set_location_assignment PIN_239 -to vsync
 set_location_assignment PIN_28 -to left_btn
 set_location_assignment PIN_29 -to right_btn
+set_global_assignment -name SYSTEMVERILOG_FILE ball.sv
 set_global_assignment -name SYSTEMVERILOG_FILE paddle.sv
 set_global_assignment -name SYSTEMVERILOG_FILE debounce.sv
 set_global_assignment -name SYSTEMVERILOG_FILE vga.sv

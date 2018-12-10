@@ -56,9 +56,9 @@ module vsync_controller
 
    logic [9:0]        counter;
 
-   const int          FRONT_PORCH = 11;
+   const int          FRONT_PORCH = 10;
    const int          SYNC_WIDTH = 2;
-   const int          BACK_PORCH = 31;
+   const int          BACK_PORCH = 33;
    const int          ACTIVE_LINES = 480;
 
    always_ff @(posedge clck) begin
@@ -139,6 +139,9 @@ module vga
    logic paddle_pixel;
    paddle pad(left, right, paddle_update, clck, x, y, paddle_pixel);
 
+   logic ball_update;
+   logic ball_pixel;
+   ball ball_(clck, reset, x, y, ball_update, ball_pixel);
    
    logic [2:0] paddleColour;
 
@@ -161,6 +164,10 @@ module vga
         end
         1 : begin
            paddle_update = 0;
+           ball_update = 1;
+        end
+        2 : begin
+           ball_update = 0;
         end
       endcase
    end
@@ -170,23 +177,26 @@ module vga
            update_counter = 1;
         end
         1 : begin
-           if(activeLine) begin
-              update_counter = 2;
-           end
+           update_counter = 2;
         end
         2 : begin
+           if(activeLine) begin
+              update_counter = 3;
+           end
+        end
+        3 : begin
            if(!activeLine) begin
               update_counter = 0;
            end
         end
         default : begin
-           update_counter = 1;
+           update_counter = 2;
         end
       endcase
    end
    
-   assign r = paddle_pixel & paddleColour[0];
-   assign g = paddle_pixel & paddleColour[1];
-   assign b = paddle_pixel & paddleColour[2];
+   assign r = (paddle_pixel & paddleColour[0]) | ball_pixel;
+   assign g = (paddle_pixel & paddleColour[1]) | ball_pixel;
+   assign b = (paddle_pixel & paddleColour[2]) | ball_pixel;
    
 endmodule
