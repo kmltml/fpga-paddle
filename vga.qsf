@@ -45,14 +45,18 @@ set_global_assignment -name LAST_QUARTUS_VERSION "9.0 SP2"
 set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_blast_fpga
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-set_global_assignment -name SYSTEMVERILOG_FILE vga.sv
 set_global_assignment -name FLEX10K_DEVICE_IO_STANDARD TTL
 set_location_assignment PIN_91 -to clck
 set_global_assignment -name MISC_FILE "D:/Kamil/Agh/sem3/vga2/vga.dpf"
-set_global_assignment -name VECTOR_WAVEFORM_FILE hsynctest.vwf
 set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE hsynctest.vwf
 set_location_assignment PIN_236 -to r
 set_location_assignment PIN_237 -to g
 set_location_assignment PIN_238 -to b
 set_location_assignment PIN_240 -to hsync
 set_location_assignment PIN_239 -to vsync
+set_location_assignment PIN_28 -to left_btn
+set_location_assignment PIN_29 -to right_btn
+set_global_assignment -name SYSTEMVERILOG_FILE paddle.sv
+set_global_assignment -name SYSTEMVERILOG_FILE debounce.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vga.sv
+set_global_assignment -name VECTOR_WAVEFORM_FILE hsynctest.vwf

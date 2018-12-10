@@ -1,0 +1,16 @@
+<internal_error>
+	<executable>quartus_map.exe</executable>
+	<sub_system>VRFX</sub_system>
+	<file>/quartus/synth/vrfx/vrfx_sgate.cpp</file>
+	<line>1777</line>
+	<callstack>
+	0x05dd05cd: synth_vrfx + 0x505cd (?elaborate@VRFX_ELABORATOR@@UAIPAVHDB_COMPONENT_SCHEMA@@PAVBASEX_ELABORATE_INFO@@@Z + 0x903d)
+	0x05dcd3f2: synth_vrfx + 0x4d3f2 (?elaborate@VRFX_ELABORATOR@@UAIPAVHDB_COMPONENT_SCHEMA@@PAVBASEX_ELABORATE_INFO@@@Z + 0x5e62)
+	</callstack>
+	<error>oterm == clk</error>
+	<date>Sun Dec 09 16:02:23 2018</date>
+	<version>Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition</version>
+	<full_error>oterm == clk
+Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition </full_error>
+</internal_error>
+
