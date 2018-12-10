@@ -137,8 +137,22 @@ module vga
 
    logic paddle_update;
    logic paddle_pixel;
-   paddle pad(left, right, paddle_update, x, y, paddle_pixel);
+   paddle pad(left, right, paddle_update, clck, x, y, paddle_pixel);
 
+   
+   logic [2:0] paddleColour;
+
+   logic       paddleColourUpdate;
+   assign paddleColourUpdate = left || right;
+   
+   always_ff @(posedge paddleColourUpdate) begin
+      if(paddleColour == 7) begin
+         paddleColour = 1;
+      end else begin
+         paddleColour += 1;
+      end
+   end
+   
    logic [2:0] update_counter;
    always_ff @(posedge clck) begin
       case(update_counter)
@@ -171,8 +185,8 @@ module vga
       endcase
    end
    
-   assign r = paddle_pixel;
-   assign g = paddle_pixel;
-   assign b = paddle_pixel;
+   assign r = paddle_pixel & paddleColour[0];
+   assign g = paddle_pixel & paddleColour[1];
+   assign b = paddle_pixel & paddleColour[2];
    
 endmodule

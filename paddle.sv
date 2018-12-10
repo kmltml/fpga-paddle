@@ -2,6 +2,7 @@ module paddle
   (input logic       left,
    input logic       right,
    input logic       update,
+   input logic       clck, 
    input logic [9:0] vgax,
    input logic [8:0] vgay,
    output logic      pixel);
@@ -10,7 +11,7 @@ module paddle
    const int         PADDLE_WIDTH = 50;
    const int         PADDLE_MIN_Y = 440;
    const int         PADDLE_MAX_Y = 460;
-   const int         X_SPEED = 1;
+   const int         X_SPEED = 2;
    
    logic [9:0]       x;
 
@@ -30,7 +31,9 @@ module paddle
       end
    end
 
-   assign pixel = vgay >= PADDLE_MIN_Y && vgay <= PADDLE_MAX_Y && vgax >= x && vgax <= x + PADDLE_WIDTH;
+   always_ff @(posedge clck) begin
+      pixel = vgay >= PADDLE_MIN_Y && vgay <= PADDLE_MAX_Y && vgax >= x && vgax <= x + PADDLE_WIDTH;
+   end
    
 
 endmodule
