@@ -30,7 +30,7 @@ module paddle
       end
    end
 
-   always_ff @(posedge clck) begin
+   always_ff @(negedge clck) begin
       pixel = vgay >= PADDLE_MIN_Y && vgay <= PADDLE_MAX_Y && vgax >= x && vgax <= x + PADDLE_WIDTH;
    end
    

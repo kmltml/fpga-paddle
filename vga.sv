@@ -149,11 +149,15 @@ module vga
    logic       paddleColourUpdate;
    assign paddleColourUpdate = left || right;
    
-   always_ff @(posedge paddleColourUpdate) begin
-      if(paddleColour == 7) begin
+   always_ff @(posedge paddleColourUpdate or posedge reset) begin
+      if(reset) begin
          paddleColour = 1;
       end else begin
-         paddleColour += 1;
+         if(paddleColour == 7) begin
+            paddleColour = 1;
+         end else begin
+            paddleColour += 1;
+         end
       end
    end
    

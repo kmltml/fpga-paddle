@@ -33,17 +33,29 @@ module ball
             end
             if(yv < 4 && y < 8 - yv) begin
                yv = 8 - yv;
+            end else if(yv > 4 && (y >= 440 - BALL_SIZE - (yv - 4) && x + BALL_SIZE >= paddleX && x <= paddleX + 50)) begin
+               yv = 8 - yv;
+               if(x + 10 - paddleX < 60 / 5)
+                 if(xv < 3) xv = 1; else xv -= 2;
+               else if(x + 10 - paddleX < 2 * 60 / 5)
+                 if(xv < 2) xv = 1; else xv -= 1;
+               else if(x + 10 - paddleX < 3 * 60 / 5);
+               else if(x + 10 - paddleX < 4 * 60 / 5)
+                 if(xv > 6) xv = 7; else xv += 1;
+               else if(x + 10 - paddleX < 5 * 60 / 5)
+                 if(xv > 5) xv = 7; else xv += 2;
             end else if(yv > 4 && 
-                        (y >= SCREEN_HEIGHT - BALL_SIZE - (yv - 4) || 
-                         (y >= 440 - BALL_SIZE - (yv - 4) && x + BALL_SIZE >= paddleX && x <= paddleX + 50))) begin
+                        (y >= SCREEN_HEIGHT - BALL_SIZE - (yv - 4))) begin
                yv = 8 - yv;
             end
+         end else begin
+            
          end
       end
    end // always_ff @ (negedge clck or reset)
 
-   always_ff @(posedge clck) begin
+   always_ff @(negedge clck) begin
       pixel = vgax >= x && vgax <= x + BALL_SIZE && vgay >= y && vgay <= y + BALL_SIZE;
    end
-
+   
 endmodule
