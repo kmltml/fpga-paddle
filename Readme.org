@@ -1,0 +1,4 @@
+* FPGA Paddle
+This is a simple project made for a digital technology course at AGH UST.
+It's written for an Altera UP2 Education Kit. It shows a controllable paddle
+and a ball bouncing around.
